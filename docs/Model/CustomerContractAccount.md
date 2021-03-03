@@ -1,0 +1,11 @@
+# # CustomerContractAccount
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **string** |  | [optional]
+**description** | **string** |  | [optional]
+**additional_articles** | [**\MittwaldApi\Model\Article[]**](Article.md) |  | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
