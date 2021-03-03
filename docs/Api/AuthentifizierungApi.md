@@ -27,11 +27,17 @@ Diese Operation erlaubt die Ausstellung eines neuen API-Tokens. Für die Ausstel
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\AuthentifizierungApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $authentication_request = new \MittwaldApi\Model\AuthenticationRequest(); // \MittwaldApi\Model\AuthenticationRequest | Die Zugangsdaten, mit denen die Authentifizierung erfolgen soll.
 
@@ -55,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -83,11 +89,17 @@ Diese Operation ermöglicht es neue Application-Tokens zu hinterlegen.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\AuthentifizierungApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $token = new \MittwaldApi\Model\ApplicationTokenInput(); // \MittwaldApi\Model\ApplicationTokenInput | Das Token sowie eine optionale Beschreibung
 
@@ -111,7 +123,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -139,11 +151,17 @@ Diese Operation ermöglicht es Application-Tokens zu löschen.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\AuthentifizierungApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $uuid = 'uuid_example'; // string | Die UUID des Tokens
 
@@ -166,7 +184,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -194,11 +212,17 @@ Diese Operation liefert alle bisher erstellten Application-Tokens aus.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\AuthentifizierungApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 
 try {
@@ -219,7 +243,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 

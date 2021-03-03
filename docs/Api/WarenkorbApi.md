@@ -38,11 +38,17 @@ Fügt eine Domain dem Warenkorb hinzu
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $item = new \MittwaldApi\Model\DomainItemInput(); // \MittwaldApi\Model\DomainItemInput | Die hinzuzufügende Domain
@@ -68,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -96,11 +102,17 @@ Fügt ein neues Item in den Warenkorb
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $item = new \MittwaldApi\Model\CartItemInput(); // \MittwaldApi\Model\CartItemInput | Das hinzuzufügende Item
@@ -126,7 +138,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -154,11 +166,17 @@ Erzeugt eine Bestellung aus einem Warenkorb
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $pin_code = new \MittwaldApi\Model\FormularBody1(); // \MittwaldApi\Model\FormularBody1
@@ -183,7 +201,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -211,11 +229,17 @@ Bestätigt die SMS-Verifizierung.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $code = new \MittwaldApi\Model\Verifizierungscode(); // \MittwaldApi\Model\Verifizierungscode
@@ -240,7 +264,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -268,11 +292,17 @@ Erstellt einen neuen Warenkorb
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $payload = new \MittwaldApi\Model\FormularBody(); // \MittwaldApi\Model\FormularBody
 
@@ -296,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -324,11 +354,17 @@ Erstellt einen neuen Warenkorb aus einer Vorlage
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 
@@ -352,7 +388,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -380,11 +416,17 @@ Erzeugt ein Angebot aus einem Warenkorb und verschickt dieses als PDF per Mail a
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $recipient = new \MittwaldApi\Model\Contact(); // \MittwaldApi\Model\Contact | Empfänger
@@ -409,7 +451,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -437,11 +479,17 @@ Löscht einen bestehenden Warenkorb
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 
@@ -464,7 +512,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -492,11 +540,17 @@ Löscht ein Item aus dem Warenkorb
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $item_identifier = 'item_identifier_example'; // string | Item ID
@@ -522,7 +576,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -550,11 +604,17 @@ Liefert einen bestehenden Warenkorb aus
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 
@@ -578,7 +638,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -606,11 +666,17 @@ Erstellt eine Vorlage aus einem Warenkorb mit Account-Ausgliederung. Vorlagen k�
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 
@@ -634,7 +700,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -662,11 +728,17 @@ Fragt eine SMS-Verifizierung an. Der Empfänger erhält eine SMS mit einem Code.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $recipient = new \MittwaldApi\Model\Verifizierungsanfrage(); // \MittwaldApi\Model\Verifizierungsanfrage
@@ -691,7 +763,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -719,11 +791,17 @@ Erstellt eine Vorlage aus einem Warenkorb. Vorlagen können nicht bearbeitet wer
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 
@@ -747,7 +825,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -775,11 +853,17 @@ Aktualisiert einen bestehenden Warenkorb
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $cart = new \MittwaldApi\Model\Cart(); // \MittwaldApi\Model\Cart | Der neue Warenkorb
@@ -805,7 +889,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -833,11 +917,17 @@ verifyRecommendCart($cart_identifier, $payload): \MittwaldApi\Model\Message
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\WarenkorbApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $cart_identifier = 'cart_identifier_example'; // string | Warenkorb ID
 $payload = new \MittwaldApi\Model\FormularBody2(); // \MittwaldApi\Model\FormularBody2
@@ -863,7 +953,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 

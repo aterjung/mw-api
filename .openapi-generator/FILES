@@ -13,7 +13,6 @@ docs/Api/DSGVOKontakteApi.md
 docs/Api/DSGVOTOMsApi.md
 docs/Api/DSGVOVertrgeApi.md
 docs/Api/DatabaseApi.md
-docs/Api/DefaultApi.md
 docs/Api/DomainsApi.md
 docs/Api/KndigungApi.md
 docs/Api/KundenApi.md
@@ -189,7 +188,6 @@ lib/Functions/DSGVOKontakteApi.php
 lib/Functions/DSGVOTOMsApi.php
 lib/Functions/DSGVOVertrgeApi.php
 lib/Functions/DatabaseApi.php
-lib/Functions/DefaultApi.php
 lib/Functions/DomainsApi.php
 lib/Functions/KndigungApi.php
 lib/Functions/KundenApi.php

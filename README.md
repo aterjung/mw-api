@@ -48,11 +48,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
 
 $apiInstance = new MittwaldApi\Api\AccountsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
+    new GuzzleHttp\Client(),
+    $config
 );
 $account_identifier = 'account_identifier_example'; // string | Name oder ID eines Accounts
 
@@ -113,7 +119,6 @@ Class | Method | HTTP request | Description
 *DSGVOVertrgeApi* | [**sendGDPRContractMail**](docs/Api/DSGVOVertrgeApi.md#sendgdprcontractmail) | **POST** /gdpr/contracts/{contractIdentifier}/actions/mail&#39; | Vertrag - Verschickt eine E-Mail mit PDF an den Empfänger des Vertrags
 *DSGVOVertrgeApi* | [**uploadGDPRPDF**](docs/Api/DSGVOVertrgeApi.md#uploadgdprpdf) | **POST** /gdpr/pdfs | PDF - Vertrags-PDF hochladen
 *DatabaseApi* | [**listDatabaseTypes**](docs/Api/DatabaseApi.md#listdatabasetypes) | **GET** /databasetypes | Datenbanktypen
-*DefaultApi* | [**rootGet**](docs/Api/DefaultApi.md#rootget) | **GET** / | 
 *DomainsApi* | [**checkDomainAvailability**](docs/Api/DomainsApi.md#checkdomainavailability) | **POST** /domains/{domainIdentifier}/actions/check | Domainverfügbarkeit prüfen
 *DomainsApi* | [**createSubdomain**](docs/Api/DomainsApi.md#createsubdomain) | **POST** /accounts/{accountIdentifier}/domains/{domainIdentifier}/subdomains | Subdomain erstellen
 *DomainsApi* | [**deleteDomain**](docs/Api/DomainsApi.md#deletedomain) | **DELETE** /accounts/{accountIdentifier}/domains/{domainIdentifier} | Domain löschen/kündigen
