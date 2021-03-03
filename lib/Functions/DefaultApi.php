@@ -1,6 +1,6 @@
 <?php
 /**
- * DatabaseApi
+ * DefaultApi
  * PHP version 7.2
  *
  * @category Class
@@ -40,14 +40,14 @@ use MittwaldApi\HeaderSelector;
 use MittwaldApi\ObjectSerializer;
 
 /**
- * DatabaseApi Class Doc Comment
+ * DefaultApi Class Doc Comment
  *
  * @category Class
  * @package  MittwaldApi
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DatabaseApi
+class DefaultApi
 {
     /**
      * @var ClientInterface
@@ -116,34 +116,29 @@ class DatabaseApi
     }
 
     /**
-     * Operation listDatabaseTypes
-     *
-     * Datenbanktypen
+     * Operation rootGet
      *
      *
      * @throws \MittwaldApi\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MittwaldApi\Model\DatabaseType[]
+     * @return void
      */
-    public function listDatabaseTypes()
+    public function rootGet()
     {
-        list($response) = $this->listDatabaseTypesWithHttpInfo();
-        return $response;
+        $this->rootGetWithHttpInfo();
     }
 
     /**
-     * Operation listDatabaseTypesWithHttpInfo
-     *
-     * Datenbanktypen
+     * Operation rootGetWithHttpInfo
      *
      *
      * @throws \MittwaldApi\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MittwaldApi\Model\DatabaseType[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listDatabaseTypesWithHttpInfo()
+    public function rootGetWithHttpInfo()
     {
-        $request = $this->listDatabaseTypesRequest();
+        $request = $this->rootGetRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -173,63 +168,27 @@ class DatabaseApi
                 );
             }
 
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\MittwaldApi\Model\DatabaseType[]' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\DatabaseType[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\MittwaldApi\Model\DatabaseType[]';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = (string) $responseBody;
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return [null, $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MittwaldApi\Model\DatabaseType[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
             }
             throw $e;
         }
     }
 
     /**
-     * Operation listDatabaseTypesAsync
+     * Operation rootGetAsync
      *
-     * Datenbanktypen
+     * 
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDatabaseTypesAsync()
+    public function rootGetAsync()
     {
-        return $this->listDatabaseTypesAsyncWithHttpInfo()
+        return $this->rootGetAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -238,35 +197,24 @@ class DatabaseApi
     }
 
     /**
-     * Operation listDatabaseTypesAsyncWithHttpInfo
+     * Operation rootGetAsyncWithHttpInfo
      *
-     * Datenbanktypen
+     * 
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listDatabaseTypesAsyncWithHttpInfo()
+    public function rootGetAsyncWithHttpInfo()
     {
-        $returnType = '\MittwaldApi\Model\DatabaseType[]';
-        $request = $this->listDatabaseTypesRequest();
+        $returnType = '';
+        $request = $this->rootGetRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -286,16 +234,16 @@ class DatabaseApi
     }
 
     /**
-     * Create request for operation 'listDatabaseTypes'
+     * Create request for operation 'rootGet'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listDatabaseTypesRequest()
+    public function rootGetRequest()
     {
 
-        $resourcePath = '/databasetypes';
+        $resourcePath = '/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -308,11 +256,11 @@ class DatabaseApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
+                [],
                 []
             );
         }
@@ -342,6 +290,11 @@ class DatabaseApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
