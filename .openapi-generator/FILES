@@ -358,5 +358,3 @@ lib/Model/Webhook.php
 lib/Model/WebhookParameter.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/CertificateRegistrationTest.php
-test/Model/CertificateTest.php

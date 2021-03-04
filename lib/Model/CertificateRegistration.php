@@ -60,7 +60,7 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'account' => 'string',
+        'article' => 'string',
         'domains' => 'string[]'
     ];
 
@@ -72,7 +72,7 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'account' => null,
+        'article' => null,
         'domains' => null
     ];
 
@@ -103,7 +103,7 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'account' => 'account',
+        'article' => 'article',
         'domains' => 'domains'
     ];
 
@@ -113,7 +113,7 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'account' => 'setAccount',
+        'article' => 'setArticle',
         'domains' => 'setDomains'
     ];
 
@@ -123,7 +123,7 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'account' => 'getAccount',
+        'article' => 'getArticle',
         'domains' => 'getDomains'
     ];
 
@@ -187,7 +187,7 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->container['account'] = $data['account'] ?? null;
+        $this->container['article'] = $data['article'] ?? null;
         $this->container['domains'] = $data['domains'] ?? null;
     }
 
@@ -200,9 +200,6 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['account'] === null) {
-            $invalidProperties[] = "'account' can't be null";
-        }
         if ($this->container['domains'] === null) {
             $invalidProperties[] = "'domains' can't be null";
         }
@@ -222,25 +219,25 @@ class CertificateRegistration implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets account
+     * Gets article
      *
-     * @return string
+     * @return string|null
      */
-    public function getAccount()
+    public function getArticle()
     {
-        return $this->container['account'];
+        return $this->container['article'];
     }
 
     /**
-     * Sets account
+     * Sets article
      *
-     * @param string $account account
+     * @param string|null $article article
      *
      * @return self
      */
-    public function setAccount($account)
+    public function setArticle($article)
     {
-        $this->container['account'] = $account;
+        $this->container['article'] = $article;
 
         return $this;
     }
