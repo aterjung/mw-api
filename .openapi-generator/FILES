@@ -74,6 +74,8 @@ docs/Model/CancellationRequestDomains.md
 docs/Model/Cart.md
 docs/Model/CartItem.md
 docs/Model/CartItemInput.md
+docs/Model/Certificate.md
+docs/Model/CertificateRegistration.md
 docs/Model/Contact.md
 docs/Model/ContactUpdateRequest.md
 docs/Model/ContactWithPhone.md
@@ -250,6 +252,8 @@ lib/Model/CancellationRequestDomains.php
 lib/Model/Cart.php
 lib/Model/CartItem.php
 lib/Model/CartItemInput.php
+lib/Model/Certificate.php
+lib/Model/CertificateRegistration.php
 lib/Model/Contact.php
 lib/Model/ContactUpdateRequest.php
 lib/Model/ContactWithPhone.php
@@ -354,3 +358,5 @@ lib/Model/Webhook.php
 lib/Model/WebhookParameter.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/CertificateRegistrationTest.php
+test/Model/CertificateTest.php

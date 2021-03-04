@@ -126,9 +126,11 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**domainProxyList**](docs/Api/DomainsApi.md#domainproxylist) | **GET** /accounts/{accountIdentifier}/domainsproxies | Domain Proxies eines Accounts
 *DomainsApi* | [**getDomainAuthCode**](docs/Api/DomainsApi.md#getdomainauthcode) | **GET** /accounts/{accountIdentifier}/domains/{domainIdentifier}/authcode | Auth-Code einer Domain auslesen
 *DomainsApi* | [**getToplevelDomain**](docs/Api/DomainsApi.md#gettopleveldomain) | **GET** /topleveldomains/{topLevelDomainIdentifier} | Toplevel-Domain auslesen
+*DomainsApi* | [**listCertificatesByAccount**](docs/Api/DomainsApi.md#listcertificatesbyaccount) | **GET** /accounts/{accountIdentifier}/certificates | Zertifikate eines Accounts auslesen
 *DomainsApi* | [**listDomainsByAccount**](docs/Api/DomainsApi.md#listdomainsbyaccount) | **GET** /accounts/{accountIdentifier}/domains | Domains eines Accounts auslesen
 *DomainsApi* | [**listSubdomainsByDomain**](docs/Api/DomainsApi.md#listsubdomainsbydomain) | **GET** /accounts/{accountIdentifier}/domains/{domainIdentifier}/subdomains | Subdomains eines Accounts auslesen
 *DomainsApi* | [**listToplevelDomains**](docs/Api/DomainsApi.md#listtopleveldomains) | **GET** /topleveldomains | Toplevel-Domains auslesen
+*DomainsApi* | [**registerNewCertificate**](docs/Api/DomainsApi.md#registernewcertificate) | **POST** /accounts/{accountIdentifier}/certificates | Zertifikat bestellen
 *DomainsApi* | [**registerNewDomain**](docs/Api/DomainsApi.md#registernewdomain) | **POST** /accounts/{accountIdentifier}/domains | Domain registrieren/Transfer einleiten
 *KndigungApi* | [**cancelContract**](docs/Api/KndigungApi.md#cancelcontract) | **POST** /cancellations | Kündigung einleiten
 *KndigungApi* | [**resendCancellationConfirmation**](docs/Api/KndigungApi.md#resendcancellationconfirmation) | **POST** /cancellations/{cancellationIdentifier}/actions/confirmationmail | Kündigungsbestätigung erneut senden
@@ -243,6 +245,8 @@ Class | Method | HTTP request | Description
 - [Cart](docs/Model/Cart.md)
 - [CartItem](docs/Model/CartItem.md)
 - [CartItemInput](docs/Model/CartItemInput.md)
+- [Certificate](docs/Model/Certificate.md)
+- [CertificateRegistration](docs/Model/CertificateRegistration.md)
 - [Contact](docs/Model/Contact.md)
 - [ContactUpdateRequest](docs/Model/ContactUpdateRequest.md)
 - [ContactWithPhone](docs/Model/ContactWithPhone.md)

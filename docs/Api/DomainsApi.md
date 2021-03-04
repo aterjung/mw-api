@@ -11,9 +11,11 @@ Method | HTTP request | Description
 [**domainProxyList()**](DomainsApi.md#domainProxyList) | **GET** /accounts/{accountIdentifier}/domainsproxies | Domain Proxies eines Accounts
 [**getDomainAuthCode()**](DomainsApi.md#getDomainAuthCode) | **GET** /accounts/{accountIdentifier}/domains/{domainIdentifier}/authcode | Auth-Code einer Domain auslesen
 [**getToplevelDomain()**](DomainsApi.md#getToplevelDomain) | **GET** /topleveldomains/{topLevelDomainIdentifier} | Toplevel-Domain auslesen
+[**listCertificatesByAccount()**](DomainsApi.md#listCertificatesByAccount) | **GET** /accounts/{accountIdentifier}/certificates | Zertifikate eines Accounts auslesen
 [**listDomainsByAccount()**](DomainsApi.md#listDomainsByAccount) | **GET** /accounts/{accountIdentifier}/domains | Domains eines Accounts auslesen
 [**listSubdomainsByDomain()**](DomainsApi.md#listSubdomainsByDomain) | **GET** /accounts/{accountIdentifier}/domains/{domainIdentifier}/subdomains | Subdomains eines Accounts auslesen
 [**listToplevelDomains()**](DomainsApi.md#listToplevelDomains) | **GET** /topleveldomains | Toplevel-Domains auslesen
+[**registerNewCertificate()**](DomainsApi.md#registerNewCertificate) | **POST** /accounts/{accountIdentifier}/certificates | Zertifikat bestellen
 [**registerNewDomain()**](DomainsApi.md#registerNewDomain) | **POST** /accounts/{accountIdentifier}/domains | Domain registrieren/Transfer einleiten
 
 
@@ -460,6 +462,72 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listCertificatesByAccount()`
+
+```php
+listCertificatesByAccount($account_identifier, $limit, $offset): \MittwaldApi\Model\Certificate[]
+```
+
+Zertifikate eines Accounts auslesen
+
+Diese Operation liest die Zertifikate eines einzelnen Accounts aus
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new MittwaldApi\Api\DomainsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$account_identifier = 'account_identifier_example'; // string | Name oder ID eines Accounts
+$limit = 20; // int | Anzahl der zurückzuliefernden Zertifikate.
+$offset = 0; // int | Offset für die Limitierung der Suchergebnisse
+
+try {
+    $result = $apiInstance->listCertificatesByAccount($account_identifier, $limit, $offset);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DomainsApi->listCertificatesByAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_identifier** | **string**| Name oder ID eines Accounts |
+ **limit** | **int**| Anzahl der zurückzuliefernden Zertifikate. | [optional] [default to 20]
+ **offset** | **int**| Offset für die Limitierung der Suchergebnisse | [optional] [default to 0]
+
+### Return type
+
+[**\MittwaldApi\Model\Certificate[]**](../Model/Certificate.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `listDomainsByAccount()`
 
 ```php
@@ -635,6 +703,70 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\MittwaldApi\Model\TopLevelDomain[]**](../Model/TopLevelDomain.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `registerNewCertificate()`
+
+```php
+registerNewCertificate($account_identifier, $body): \MittwaldApi\Model\Certificate[]
+```
+
+Zertifikat bestellen
+
+Neues Zertifikat bestellen.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = MittwaldApi\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new MittwaldApi\Api\DomainsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$account_identifier = 'account_identifier_example'; // string | Name oder ID eines Accounts
+$body = new \MittwaldApi\Model\CertificateRegistration(); // \MittwaldApi\Model\CertificateRegistration | Daten für eine Zertifikatsbestellung
+
+try {
+    $result = $apiInstance->registerNewCertificate($account_identifier, $body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DomainsApi->registerNewCertificate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **account_identifier** | **string**| Name oder ID eines Accounts |
+ **body** | [**\MittwaldApi\Model\CertificateRegistration**](../Model/CertificateRegistration.md)| Daten für eine Zertifikatsbestellung |
+
+### Return type
+
+[**\MittwaldApi\Model\Certificate[]**](../Model/Certificate.md)
 
 ### Authorization
 

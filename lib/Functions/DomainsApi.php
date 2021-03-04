@@ -2001,6 +2001,322 @@ class DomainsApi
     }
 
     /**
+     * Operation listCertificatesByAccount
+     *
+     * Zertifikate eines Accounts auslesen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  int $limit Anzahl der zurückzuliefernden Zertifikate. (optional, default to 20)
+     * @param  int $offset Offset für die Limitierung der Suchergebnisse (optional, default to 0)
+     *
+     * @throws \MittwaldApi\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MittwaldApi\Model\Certificate[]|\MittwaldApi\Model\Error
+     */
+    public function listCertificatesByAccount($account_identifier, $limit = 20, $offset = 0)
+    {
+        list($response) = $this->listCertificatesByAccountWithHttpInfo($account_identifier, $limit, $offset);
+        return $response;
+    }
+
+    /**
+     * Operation listCertificatesByAccountWithHttpInfo
+     *
+     * Zertifikate eines Accounts auslesen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  int $limit Anzahl der zurückzuliefernden Zertifikate. (optional, default to 20)
+     * @param  int $offset Offset für die Limitierung der Suchergebnisse (optional, default to 0)
+     *
+     * @throws \MittwaldApi\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MittwaldApi\Model\Certificate[]|\MittwaldApi\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCertificatesByAccountWithHttpInfo($account_identifier, $limit = 20, $offset = 0)
+    {
+        $request = $this->listCertificatesByAccountRequest($account_identifier, $limit, $offset);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MittwaldApi\Model\Certificate[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Certificate[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\MittwaldApi\Model\Error' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MittwaldApi\Model\Certificate[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MittwaldApi\Model\Certificate[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MittwaldApi\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation listCertificatesByAccountAsync
+     *
+     * Zertifikate eines Accounts auslesen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  int $limit Anzahl der zurückzuliefernden Zertifikate. (optional, default to 20)
+     * @param  int $offset Offset für die Limitierung der Suchergebnisse (optional, default to 0)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCertificatesByAccountAsync($account_identifier, $limit = 20, $offset = 0)
+    {
+        return $this->listCertificatesByAccountAsyncWithHttpInfo($account_identifier, $limit, $offset)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation listCertificatesByAccountAsyncWithHttpInfo
+     *
+     * Zertifikate eines Accounts auslesen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  int $limit Anzahl der zurückzuliefernden Zertifikate. (optional, default to 20)
+     * @param  int $offset Offset für die Limitierung der Suchergebnisse (optional, default to 0)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function listCertificatesByAccountAsyncWithHttpInfo($account_identifier, $limit = 20, $offset = 0)
+    {
+        $returnType = '\MittwaldApi\Model\Certificate[]';
+        $request = $this->listCertificatesByAccountRequest($account_identifier, $limit, $offset);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'listCertificatesByAccount'
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  int $limit Anzahl der zurückzuliefernden Zertifikate. (optional, default to 20)
+     * @param  int $offset Offset für die Limitierung der Suchergebnisse (optional, default to 0)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function listCertificatesByAccountRequest($account_identifier, $limit = 20, $offset = 0)
+    {
+        // verify the required parameter 'account_identifier' is set
+        if ($account_identifier === null || (is_array($account_identifier) && count($account_identifier) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_identifier when calling listCertificatesByAccount'
+            );
+        }
+
+        $resourcePath = '/accounts/{accountIdentifier}/certificates';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if (is_array($limit)) {
+            $limit = ObjectSerializer::serializeCollection($limit, '', true);
+        }
+        if ($limit !== null) {
+            $queryParams['limit'] = $limit;
+        }
+        // query params
+        if (is_array($offset)) {
+            $offset = ObjectSerializer::serializeCollection($offset, '', true);
+        }
+        if ($offset !== null) {
+            $queryParams['offset'] = $offset;
+        }
+
+
+        // path params
+        if ($account_identifier !== null) {
+            $resourcePath = str_replace(
+                '{' . 'accountIdentifier' . '}',
+                ObjectSerializer::toPathValue($account_identifier),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation listDomainsByAccount
      *
      * Domains eines Accounts auslesen
@@ -2854,6 +3170,295 @@ class DomainsApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation registerNewCertificate
+     *
+     * Zertifikat bestellen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  \MittwaldApi\Model\CertificateRegistration $body Daten für eine Zertifikatsbestellung (required)
+     *
+     * @throws \MittwaldApi\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MittwaldApi\Model\Certificate[]
+     */
+    public function registerNewCertificate($account_identifier, $body)
+    {
+        list($response) = $this->registerNewCertificateWithHttpInfo($account_identifier, $body);
+        return $response;
+    }
+
+    /**
+     * Operation registerNewCertificateWithHttpInfo
+     *
+     * Zertifikat bestellen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  \MittwaldApi\Model\CertificateRegistration $body Daten für eine Zertifikatsbestellung (required)
+     *
+     * @throws \MittwaldApi\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MittwaldApi\Model\Certificate[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function registerNewCertificateWithHttpInfo($account_identifier, $body)
+    {
+        $request = $this->registerNewCertificateRequest($account_identifier, $body);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\MittwaldApi\Model\Certificate[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Certificate[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MittwaldApi\Model\Certificate[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MittwaldApi\Model\Certificate[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation registerNewCertificateAsync
+     *
+     * Zertifikat bestellen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  \MittwaldApi\Model\CertificateRegistration $body Daten für eine Zertifikatsbestellung (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function registerNewCertificateAsync($account_identifier, $body)
+    {
+        return $this->registerNewCertificateAsyncWithHttpInfo($account_identifier, $body)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation registerNewCertificateAsyncWithHttpInfo
+     *
+     * Zertifikat bestellen
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  \MittwaldApi\Model\CertificateRegistration $body Daten für eine Zertifikatsbestellung (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function registerNewCertificateAsyncWithHttpInfo($account_identifier, $body)
+    {
+        $returnType = '\MittwaldApi\Model\Certificate[]';
+        $request = $this->registerNewCertificateRequest($account_identifier, $body);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'registerNewCertificate'
+     *
+     * @param  string $account_identifier Name oder ID eines Accounts (required)
+     * @param  \MittwaldApi\Model\CertificateRegistration $body Daten für eine Zertifikatsbestellung (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function registerNewCertificateRequest($account_identifier, $body)
+    {
+        // verify the required parameter 'account_identifier' is set
+        if ($account_identifier === null || (is_array($account_identifier) && count($account_identifier) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_identifier when calling registerNewCertificate'
+            );
+        }
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $body when calling registerNewCertificate'
+            );
+        }
+
+        $resourcePath = '/accounts/{accountIdentifier}/certificates';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($account_identifier !== null) {
+            $resourcePath = str_replace(
+                '{' . 'accountIdentifier' . '}',
+                ObjectSerializer::toPathValue($account_identifier),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($body)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($body));
+            } else {
+                $httpBody = $body;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
