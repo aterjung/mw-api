@@ -2327,7 +2327,7 @@ class DomainsApi
      *
      * @throws \MittwaldApi\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MittwaldApi\Model\Domain[]|\MittwaldApi\Model\Error
+     * @return \MittwaldApi\Model\Domain|\MittwaldApi\Model\Error
      */
     public function listDomainsByAccount($account_identifier, $limit = 20, $offset = 0)
     {
@@ -2346,7 +2346,7 @@ class DomainsApi
      *
      * @throws \MittwaldApi\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MittwaldApi\Model\Domain[]|\MittwaldApi\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MittwaldApi\Model\Domain|\MittwaldApi\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
     public function listDomainsByAccountWithHttpInfo($account_identifier, $limit = 20, $offset = 0)
     {
@@ -2383,14 +2383,14 @@ class DomainsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MittwaldApi\Model\Domain[]' === '\SplFileObject') {
+                    if ('\MittwaldApi\Model\Domain' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Domain[]', []),
+                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Domain', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2408,7 +2408,7 @@ class DomainsApi
                     ];
             }
 
-            $returnType = '\MittwaldApi\Model\Domain[]';
+            $returnType = '\MittwaldApi\Model\Domain';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -2427,7 +2427,7 @@ class DomainsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MittwaldApi\Model\Domain[]',
+                        '\MittwaldApi\Model\Domain',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2481,7 +2481,7 @@ class DomainsApi
      */
     public function listDomainsByAccountAsyncWithHttpInfo($account_identifier, $limit = 20, $offset = 0)
     {
-        $returnType = '\MittwaldApi\Model\Domain[]';
+        $returnType = '\MittwaldApi\Model\Domain';
         $request = $this->listDomainsByAccountRequest($account_identifier, $limit, $offset);
 
         return $this->client
@@ -3475,7 +3475,7 @@ class DomainsApi
      *
      * @throws \MittwaldApi\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MittwaldApi\Model\Domain[]
+     * @return \MittwaldApi\Model\Domain
      */
     public function registerNewDomain($account_identifier, $body)
     {
@@ -3493,7 +3493,7 @@ class DomainsApi
      *
      * @throws \MittwaldApi\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MittwaldApi\Model\Domain[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MittwaldApi\Model\Domain, HTTP status code, HTTP response headers (array of strings)
      */
     public function registerNewDomainWithHttpInfo($account_identifier, $body)
     {
@@ -3530,20 +3530,20 @@ class DomainsApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 201:
-                    if ('\MittwaldApi\Model\Domain[]' === '\SplFileObject') {
+                    if ('\MittwaldApi\Model\Domain' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Domain[]', []),
+                        ObjectSerializer::deserialize($content, '\MittwaldApi\Model\Domain', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MittwaldApi\Model\Domain[]';
+            $returnType = '\MittwaldApi\Model\Domain';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -3562,7 +3562,7 @@ class DomainsApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MittwaldApi\Model\Domain[]',
+                        '\MittwaldApi\Model\Domain',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3606,7 +3606,7 @@ class DomainsApi
      */
     public function registerNewDomainAsyncWithHttpInfo($account_identifier, $body)
     {
-        $returnType = '\MittwaldApi\Model\Domain[]';
+        $returnType = '\MittwaldApi\Model\Domain';
         $request = $this->registerNewDomainRequest($account_identifier, $body);
 
         return $this->client
